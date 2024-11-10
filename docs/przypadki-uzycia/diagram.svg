@@ -153,10 +153,10 @@
 	<text x="373.00" y="785.00" textLength="69" style="font-family:Carlito; font-weight:700; font-style:normal; font-size:10px; fill:#595959;fill-opacity:1.00; stroke:#000000; stroke-opacity:0.00 stroke-width:0; white-space: pre;" xml:space="preserve" transform="rotate(-0.00 373.00 785.00)">sprzedaży miejsc</text>
 </g>
 <g style="stroke-width:1;stroke-linecap:round;stroke-linejoin:bevel; fill:#E5F2FE;fill-opacity:1.00; stroke:#9A8484; stroke-opacity:1.00">
-<ellipse cx="563.00" cy="769.00" rx="52.50" ry="35.00" shape-rendering="auto"  />
+<ellipse cx="572.00" cy="769.00" rx="52.50" ry="35.00" shape-rendering="auto"  />
 </g>
 <g style="stroke-width:1;stroke-linecap:round;stroke-linejoin:bevel; fill:#595959;fill-opacity:1.00; stroke:#000000; stroke-opacity:0.00">
-	<text x="533.00" y="772.00" textLength="61" style="font-family:Carlito; font-weight:700; font-style:normal; font-size:10px; fill:#595959;fill-opacity:1.00; stroke:#000000; stroke-opacity:0.00 stroke-width:0; white-space: pre;" xml:space="preserve" transform="rotate(-0.00 533.00 772.00)">Sprzedaż biletu</text>
+	<text x="542.00" y="772.00" textLength="61" style="font-family:Carlito; font-weight:700; font-style:normal; font-size:10px; fill:#595959;fill-opacity:1.00; stroke:#000000; stroke-opacity:0.00 stroke-width:0; white-space: pre;" xml:space="preserve" transform="rotate(-0.00 542.00 772.00)">Sprzedaż biletu</text>
 </g>
 <g style="stroke-width:1;stroke-linecap:round;stroke-linejoin:bevel; fill:#E5F2FE;fill-opacity:1.00; stroke:#9A8484; stroke-opacity:1.00">
 <ellipse cx="734.00" cy="769.00" rx="52.50" ry="35.00" shape-rendering="auto"  />
@@ -328,13 +328,13 @@
   <path d="M 314 763 L 299 769 L 314 775" shape-rendering="auto"/>
 </g>
 <g style="stroke-width:1;stroke-linecap:square;stroke-linejoin:round; fill:#000000;fill-opacity:0.00; stroke:#69738C; stroke-opacity:1.00" stroke-dasharray="6,3">
-  <path d="M 460 769 L 511 769 M 460 769" shape-rendering="auto"/>
+  <path d="M 460 769 L 520 769 M 460 769" shape-rendering="auto"/>
 </g>
 <g style="stroke-width:1;stroke-linecap:round;stroke-linejoin:bevel; fill:#000000;fill-opacity:0.00; stroke:#69738C; stroke-opacity:1.00">
   <path d="M 475 763 L 460 769 L 475 775" shape-rendering="auto"/>
 </g>
 <g style="stroke-width:1;stroke-linecap:square;stroke-linejoin:round; fill:#000000;fill-opacity:0.00; stroke:#69738C; stroke-opacity:1.00" stroke-dasharray="6,3">
-  <path d="M 682 769 L 616 769 M 682 769" shape-rendering="auto"/>
+  <path d="M 682 769 L 625 769 M 682 769" shape-rendering="auto"/>
 </g>
 <g style="stroke-width:1;stroke-linecap:round;stroke-linejoin:bevel; fill:#000000;fill-opacity:0.00; stroke:#69738C; stroke-opacity:1.00">
   <path d="M 667 775 L 682 769 L 667 763" shape-rendering="auto"/>
@@ -364,19 +364,19 @@
   <path d="M 126 1388 L 194 1369" shape-rendering="auto"/>
 </g>
 <g style="stroke-width:1;stroke-linecap:round;stroke-linejoin:bevel; fill:#595959;fill-opacity:1.00; stroke:#000000; stroke-opacity:0.00">
-	<text x="309.00" y="1110.00" textLength="37" style="font-family:Carlito; font-weight:0; font-style:normal; font-size:10px; fill:#595959;fill-opacity:1.00; stroke:#000000; stroke-opacity:0.00 stroke-width:0; white-space: pre;" xml:space="preserve" transform="rotate(-0.00 309.00 1110.00)">«extend»</text>
-	<text x="307.00" y="368.00" textLength="37" style="font-family:Carlito; font-weight:0; font-style:normal; font-size:10px; fill:#595959;fill-opacity:1.00; stroke:#000000; stroke-opacity:0.00 stroke-width:0; white-space: pre;" xml:space="preserve" transform="rotate(-0.00 307.00 368.00)">«extend»</text>
-	<text x="307.00" y="198.00" textLength="37" style="font-family:Carlito; font-weight:0; font-style:normal; font-size:10px; fill:#595959;fill-opacity:1.00; stroke:#000000; stroke-opacity:0.00 stroke-width:0; white-space: pre;" xml:space="preserve" transform="rotate(-0.00 307.00 198.00)">«extend»</text>
-	<text x="476.00" y="441.00" textLength="37" style="font-family:Carlito; font-weight:0; font-style:normal; font-size:10px; fill:#595959;fill-opacity:1.00; stroke:#000000; stroke-opacity:0.00 stroke-width:0; white-space: pre;" xml:space="preserve" transform="rotate(-0.00 476.00 441.00)">«extend»</text>
-	<text x="476.00" y="511.00" textLength="37" style="font-family:Carlito; font-weight:0; font-style:normal; font-size:10px; fill:#595959;fill-opacity:1.00; stroke:#000000; stroke-opacity:0.00 stroke-width:0; white-space: pre;" xml:space="preserve" transform="rotate(-0.00 476.00 511.00)">«extend»</text>
-	<text x="510.00" y="617.00" textLength="38" style="font-family:Carlito; font-weight:0; font-style:normal; font-size:10px; fill:#595959;fill-opacity:1.00; stroke:#000000; stroke-opacity:0.00 stroke-width:0; white-space: pre;" xml:space="preserve" transform="rotate(-0.00 510.00 617.00)">«include»</text>
-	<text x="467.00" y="782.00" textLength="37" style="font-family:Carlito; font-weight:0; font-style:normal; font-size:10px; fill:#595959;fill-opacity:1.00; stroke:#000000; stroke-opacity:0.00 stroke-width:0; white-space: pre;" xml:space="preserve" transform="rotate(-0.00 467.00 782.00)">«extend»</text>
-	<text x="307.00" y="438.00" textLength="37" style="font-family:Carlito; font-weight:0; font-style:normal; font-size:10px; fill:#595959;fill-opacity:1.00; stroke:#000000; stroke-opacity:0.00 stroke-width:0; white-space: pre;" xml:space="preserve" transform="rotate(-0.00 307.00 438.00)">«extend»</text>
-	<text x="309.00" y="1263.00" textLength="37" style="font-family:Carlito; font-weight:0; font-style:normal; font-size:10px; fill:#595959;fill-opacity:1.00; stroke:#000000; stroke-opacity:0.00 stroke-width:0; white-space: pre;" xml:space="preserve" transform="rotate(-0.00 309.00 1263.00)">«extend»</text>
-	<text x="306.00" y="130.00" textLength="37" style="font-family:Carlito; font-weight:0; font-style:normal; font-size:10px; fill:#595959;fill-opacity:1.00; stroke:#000000; stroke-opacity:0.00 stroke-width:0; white-space: pre;" xml:space="preserve" transform="rotate(-0.00 306.00 130.00)">«extend»</text>
 	<text x="342.00" y="688.00" textLength="38" style="font-family:Carlito; font-weight:0; font-style:normal; font-size:10px; fill:#595959;fill-opacity:1.00; stroke:#000000; stroke-opacity:0.00 stroke-width:0; white-space: pre;" xml:space="preserve" transform="rotate(-0.00 342.00 688.00)">«include»</text>
+	<text x="307.00" y="198.00" textLength="37" style="font-family:Carlito; font-weight:0; font-style:normal; font-size:10px; fill:#595959;fill-opacity:1.00; stroke:#000000; stroke-opacity:0.00 stroke-width:0; white-space: pre;" xml:space="preserve" transform="rotate(-0.00 307.00 198.00)">«extend»</text>
+	<text x="634.00" y="782.00" textLength="38" style="font-family:Carlito; font-weight:0; font-style:normal; font-size:10px; fill:#595959;fill-opacity:1.00; stroke:#000000; stroke-opacity:0.00 stroke-width:0; white-space: pre;" xml:space="preserve" transform="rotate(-0.00 634.00 782.00)">«include»</text>
+	<text x="309.00" y="1263.00" textLength="37" style="font-family:Carlito; font-weight:0; font-style:normal; font-size:10px; fill:#595959;fill-opacity:1.00; stroke:#000000; stroke-opacity:0.00 stroke-width:0; white-space: pre;" xml:space="preserve" transform="rotate(-0.00 309.00 1263.00)">«extend»</text>
+	<text x="309.00" y="1110.00" textLength="37" style="font-family:Carlito; font-weight:0; font-style:normal; font-size:10px; fill:#595959;fill-opacity:1.00; stroke:#000000; stroke-opacity:0.00 stroke-width:0; white-space: pre;" xml:space="preserve" transform="rotate(-0.00 309.00 1110.00)">«extend»</text>
 	<text x="309.00" y="782.00" textLength="37" style="font-family:Carlito; font-weight:0; font-style:normal; font-size:10px; fill:#595959;fill-opacity:1.00; stroke:#000000; stroke-opacity:0.00 stroke-width:0; white-space: pre;" xml:space="preserve" transform="rotate(-0.00 309.00 782.00)">«extend»</text>
-	<text x="630.00" y="782.00" textLength="38" style="font-family:Carlito; font-weight:0; font-style:normal; font-size:10px; fill:#595959;fill-opacity:1.00; stroke:#000000; stroke-opacity:0.00 stroke-width:0; white-space: pre;" xml:space="preserve" transform="rotate(-0.00 630.00 782.00)">«include»</text>
+	<text x="307.00" y="438.00" textLength="37" style="font-family:Carlito; font-weight:0; font-style:normal; font-size:10px; fill:#595959;fill-opacity:1.00; stroke:#000000; stroke-opacity:0.00 stroke-width:0; white-space: pre;" xml:space="preserve" transform="rotate(-0.00 307.00 438.00)">«extend»</text>
+	<text x="510.00" y="617.00" textLength="38" style="font-family:Carlito; font-weight:0; font-style:normal; font-size:10px; fill:#595959;fill-opacity:1.00; stroke:#000000; stroke-opacity:0.00 stroke-width:0; white-space: pre;" xml:space="preserve" transform="rotate(-0.00 510.00 617.00)">«include»</text>
+	<text x="472.00" y="782.00" textLength="37" style="font-family:Carlito; font-weight:0; font-style:normal; font-size:10px; fill:#595959;fill-opacity:1.00; stroke:#000000; stroke-opacity:0.00 stroke-width:0; white-space: pre;" xml:space="preserve" transform="rotate(-0.00 472.00 782.00)">«extend»</text>
+	<text x="306.00" y="130.00" textLength="37" style="font-family:Carlito; font-weight:0; font-style:normal; font-size:10px; fill:#595959;fill-opacity:1.00; stroke:#000000; stroke-opacity:0.00 stroke-width:0; white-space: pre;" xml:space="preserve" transform="rotate(-0.00 306.00 130.00)">«extend»</text>
+	<text x="307.00" y="368.00" textLength="37" style="font-family:Carlito; font-weight:0; font-style:normal; font-size:10px; fill:#595959;fill-opacity:1.00; stroke:#000000; stroke-opacity:0.00 stroke-width:0; white-space: pre;" xml:space="preserve" transform="rotate(-0.00 307.00 368.00)">«extend»</text>
+	<text x="476.00" y="511.00" textLength="37" style="font-family:Carlito; font-weight:0; font-style:normal; font-size:10px; fill:#595959;fill-opacity:1.00; stroke:#000000; stroke-opacity:0.00 stroke-width:0; white-space: pre;" xml:space="preserve" transform="rotate(-0.00 476.00 511.00)">«extend»</text>
 	<text x="227.00" y="1084.00" textLength="38" style="font-family:Carlito; font-weight:0; font-style:normal; font-size:10px; fill:#595959;fill-opacity:1.00; stroke:#000000; stroke-opacity:0.00 stroke-width:0; white-space: pre;" xml:space="preserve" transform="rotate(-0.00 227.00 1084.00)">«include»</text>
+	<text x="476.00" y="441.00" textLength="37" style="font-family:Carlito; font-weight:0; font-style:normal; font-size:10px; fill:#595959;fill-opacity:1.00; stroke:#000000; stroke-opacity:0.00 stroke-width:0; white-space: pre;" xml:space="preserve" transform="rotate(-0.00 476.00 441.00)">«extend»</text>
 </g>
 </svg>

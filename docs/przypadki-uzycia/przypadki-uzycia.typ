@@ -14,6 +14,8 @@
   return numbering("1.", ..numbers)
 })
 
+#set line(stroke: gray, length: 100%)
+
 #align(center)[
   #stack(
     v(12pt),
@@ -27,7 +29,7 @@
 
 = Diagram przypadków użycia
 
-#align(center)[#image(height: 80%, "diagram.png")]
+#align(center)[#image(height: 85%, "diagram.png")]
 
 = Aktorzy
 
@@ -56,6 +58,10 @@ Jest systemem współpracującym. Otrzymuje dane o sprzedanych biletach.
 Jest systemem współpracującym. Zapewnia informacje o filmach w tym ich opisy, oceny i zwiastuny.
 
 = Przypadki użycia
+
+
+#line()
+#text(size: 24pt, fill: maroon)[Klient]
 
 == Założenie konta w serwisie
 === Warunki początkowe
@@ -158,20 +164,20 @@ Jest systemem współpracującym. Zapewnia informacje o filmach w tym ich opisy,
 === Przebieg
 + Klient zgłasza żądanie rezerwacji miejsca.
 + Klient wybiera dostępne miejsca.
-+ System zapisuje wybrane miejsca jako zarezerwowane. (wyjątek: "Wybrane miejsca nie są dostępne").
++ System zapisuje wybrane miejsca jako zarezerwowane. (wyjątek: "Wybrane miejsca nie są już dostępne").
 + System prosi o imię w celu późniejszego potwierdzenia rezerwacji.
 + Klient podaje imię.
 + System zapisuje rezerwację w bazie danych.
 
 === Przebiegi alternatywne
-1-4: W każdym z tych kroków klient ma możliwość przerwania rezerwacji. Jeśli klient przerwie rezerwację, system zwraca zarezerwowane miejsca do puli wolnych miejsc.
+1-5: W każdym z tych kroków klient ma możliwość przerwania rezerwacji. Jeśli klient przerwie rezerwację, system zwraca zarezerwowane miejsca do puli wolnych miejsc.
 
-3a. Wyjątek: "Wybrane miejsca nie są dostępne".\
+3a. Wyjątek: "Wybrane miejsca nie są już dostępne".\
 3a1. System informuje o braku dostępności wybranych miejsc.\
-3a2. Rezerwowanie miejsc jest przerywane.
+3a2. Klient ma możliwość wybrania innych miejsc (powrót do punktu 2). W przeciwnym wypadku proces rezerwacji jest przerywany.
 
 === Warunki końcowe
-- Bilet zarezerwowany na podane imię.
+- Bilet zarezerwowany na podane przez Klienta imię.
 
 == Zakup biletu
 === Warunki początkowe
@@ -179,19 +185,19 @@ Jest systemem współpracującym. Zapewnia informacje o filmach w tym ich opisy,
 - System w trybie sprawdzania wolnych miejsc - widoczna lista miejsc na sali.
 
 === Przebieg
-+ Klient widzi dostępne miejsca w sali. Może wybrać miejsca, które go interesują.
-+ Klient zgłasza żądanie zakupu biletu.
-+ System prosi o potwierdzenie wyboru miejsca oraz przedstawia cenę biletu. Zapisuje miejsca jako zarezerwowane. (wyjątek: "Wybrane miejsca nie są dostępne").
++ Klient zgłasza żądanie kupna biletu.
++ Klient wybiera dostępne miejsca.
++ System prosi o potwierdzenie wyboru miejsca oraz przedstawia cenę biletu. Zapisuje miejsca jako zarezerwowane. (wyjątek: "Wybrane miejsca nie są już dostępne").
 + Klient potwierdza i przechodzi do płatności.
-+ System przekierowuje klienta do systemu płatności Przelewy24, gdzie klient dokonuje płatności (przypadek: "Płatność za bilet" oraz wyjątek: "Płatność nie powiodła się").
++ System przekierowuje klienta do systemu płatności Przelewy24, gdzie klient dokonuje płatności (przypadek: "Płatność" oraz wyjątek: "Płatność nie powiodła się").
 + System zapisuje zakupiony bilet w bazie danych.
 
 === Przebiegi alternatywne
-1-4: W każdym z tych kroków klient ma możliwość przerwania zakupu. Jeśli klient przerwie zakup, system zwraca zarezerwowane miejsca do puli wolnych miejsc.
+1-5: W każdym z tych kroków klient ma możliwość przerwania zakupu. Jeśli klient przerwie zakup, system zwraca zarezerwowane miejsca do puli wolnych miejsc.
 
-3a. Wyjątek: "Wybrane miejsca nie są dostępne".\
+3a. Wyjątek: "Wybrane miejsca nie są już dostępne".\
 3a1. System informuje o braku dostępności wybranych miejsc.\
-3a2. Zakup biletu jest przerywany.
+3a2. Klient ma możliwość wybrania innych miejsc (powrót do punktu 2). W przeciwnym wypadku zakup jest przerywany.
 
 5a: Wyjątek: "Płatność nie powiodła się" \
 5a1. System informuje klienta o niepowodzeniu płatności. \
@@ -199,7 +205,7 @@ Jest systemem współpracującym. Zapewnia informacje o filmach w tym ich opisy,
 5a3. Proces zakupu jest przerywany.
 
 === Warunki końcowe
-- Bilet zakupiony.
+- Bilet utworzony w systemie.
 
 == Płatność
 === Warunki początkowe
@@ -274,14 +280,14 @@ Jest systemem współpracującym. Zapewnia informacje o filmach w tym ich opisy,
 === Przebieg
 + Z listy zakupionych biletów, klient wybiera zakup, który chce anulować.
 + Klient zgłasza żądanie zwrotu biletu.
-+ System sprawdza czy dany seans już się odbył (wyjątek: "Seans już się odbył").
++ System sprawdza czy poprawność daty seansu - nie można zwrócić biletów na seanse które już się odbyły(wyjątek: "Seans już się odbył").
 + System prosi o potwierdzenie prośby.
 + Klient potwierdza chęć zwrotu biletu (Wyjątek: "Klient anulował żądanie zwrotu biletu")
 + System wysyła żądanie do systemu Przelewy24 o zwrot środków na konto klienta.
 
 === Przebiegi alternatywne
 3a Wyjątek: "Seans już się odbył" \
-3a1. System informuje, że seans już się odbył\
+3a1. System informuje, że seans już się odbył. \
 3a2. Proces zwrotu biletu jest przerywany.
 
 5a Wyjątek: "Klient anulował żądanie zwrotu biletu"\
@@ -304,5 +310,230 @@ Jest systemem współpracującym. Zapewnia informacje o filmach w tym ich opisy,
 - Brak.
 
 === Warunki końcowe
-- Klient pobrał plik z biletem.
+- Brak.
 
+#line()
+#text(size: 24pt, fill: maroon)[Kasjer]
+
+== Dostęp do aktualnego repertuaru kina
+=== Warunki początkowe
+- Brak.
+
+=== Przebieg
++ Kasjer zgłasza żądanie sprawdzenia repertuaru kina. Posiada możliwość określenia ilości dni (do 30, domyślnie 7).
++ System prezentuje kasjerowi listę filmów, które będą wyświetlane w wybranych dniach. Informacje zawierają:
+  - tytuł filmu,
+  - datę seansu,
+  - godzinę rozpoczęcia.
++ Kasjer może sprawdzić, czy są dostępne miejsca do sprzedaży na dany seans (przypadek: "Sprawdzanie dostępnych do sprzedaży miejsc").
+
+=== Przebiegi alternatywne
+- Brak.
+
+=== Warunki końcowe
+- Brak.
+
+== Sprawdzenie dostępnych do sprzedaży miejsc
+=== Warunki początkowe
+- System w trybie dostępu do aktualnego repertuaru kina - widoczna lista filmów.
+
+=== Przebieg
++ Kasjer zgłasza żądanie wyświetlenia dostępnych do sprzedaży miejsc na wybrany przez niego seans.
++ System sprawdza, które miejsca zostały już zajęte i wyświetla informację kasjerowi.
++ Kasjer ma możliwość wyboru i sprzedaży biletu (przypadek: "Sprzedaż biletu").
+
+=== Przebiegi alternatywne
+- Brak.
+
+=== Warunki końcowe
+- Brak.
+
+== Sprzedaż biletu
+=== Warunki początkowe
+- System w trybie sprawdzania dostępnych do sprzedaży miejsc - widoczna lista miejsc na sali.
+
+=== Przebieg
++ Kasjer widzi dostępne miejsca w sali. Może wybrać miejsca, które interesują klienta.
++ Kasjer zgłasza żądanie zakupu biletu.
++ System prosi o potwierdzenie wyboru miejsca oraz przedstawia cenę biletu. Zapisuje miejsca jako zarezerwowane. (wyjątek: "Wybrane miejsca nie są dostępne").
++ Kasjer potwierdza i przechodzi do płatności.
++ System zapisuje zakupiony bilet w bazie danych.
++ System generuje plik z biletem i zleca jego wydruk (przypadek: "Wydruk biletu na papierze").
+
+=== Przebiegi alternatywne
+1-3: Kasjer ma możliwość wzięcia opłaty za wcześniej zarezerwowany bilet klienta.
+1-4: W każdym z tych kroków kasjer ma możliwość przerwania zakupu. Jeśli kasjer przerwie zakup, system zwraca zarezerwowane miejsca do puli wolnych miejsc.
+
+3a. Wyjątek: "Wybrane miejsca nie są dostępne".\
+3a1. System informuje o braku dostępności wybranych miejsc.\
+3a2. Zakup biletu jest przerywany.
+
+=== Warunki końcowe
+- Bilet utworzony w systemie.
+
+
+== Wydruk biletu na papierze
+=== Warunki początkowe
+- Bilet zakupiony przez klienta w kasie kina.
+
+=== Przebieg
++ Kasjer zgłasza żądanie wydruku biletu.
++ System generuje plik z biletem i zleca jego wydruk. (wyjątek: "Błąd drukowania")
++ Kasjer odbiera wydrukowany bilet i przekazuje go klientowi.
+
+=== Przebiegi alternatywne
+2a: Wyjątek: "Błąd drukowania" \
+2a1. System informuje kasjera o błędzie drukowania. \
+2a2. Kasjer ponawia próbę drukowania biletu. (powrót do punktu 2).
+
+=== Warunki końcowe
+- Klient otrzymał wydrukowany bilet.
+
+
+== Eksport historii transakcji do programu księgowego
+=== Warunki początkowe
+- Brak.
+
+=== Przebieg
++ Kasjer zgłasza żądanie eksportu historii transakcji do programu księgowego.
++ System generuje odpowiedni plik z historią transakcji, który może być zaimportowany do programu księgowego. (wyjątek: "Błąd eksportu")
++ Kasjer ma możliwość pobrania pliku.
++ System prosi o potwierdzenie poprawności danych.
++ Kasjer potwierdza eksport danych.
++ System przesyła plik do programu księgowego oraz oznacza transakcje jako przesłane.
+
+=== Przebiegi alternatywne
+1-5: W każdym z tych kroków kasjer ma możliwość przerwania eksportu.
+
+3a: Wyjątek: "Błąd eksportu" \
+3a1. System informuje kasjera o błędzie eksportu. \
+3a2. Kasjer ma możliwość ponownego wygenerowania pliku (powrót do punktu 2).
+
+=== Warunki końcowe
+- Dane zostały przesłane do programu księgowego i oznaczone jako przesłane.
+
+#line()
+#text(size: 24pt, fill: maroon)[Kontroler biletów]
+
+== Sprawdzanie kodów QR na biletach
+=== Warunki początkowe
+- Brak.
+
+=== Przebieg
++ Kasjer zgłasza żądanie sprawdzenia kodu QR na bilecie.
++ System odczytuje dane z kodu QR oraz sprawdza, czy bilet jest autentyczny (przypadek: "Weryfikacja autentyczności biletu").
+
+=== Przebiegi alternatywne
+- Brak.
+
+=== Warunki końcowe
+- Brak.
+
+== Weryfikacja autentyczności biletu
+=== Warunki początkowe
+- Brak.
+
+=== Przebieg
++ Jeśli nie zeskanowano jeszcze kodu QR, system prosi kontrolera biletów o wprowadzenie kodu ręcznie.
++ System wyszukuje bilet w bazie danych. (wyjątek: "Bilet nie istnieje")
++ System sprawdza, czy bilet jest autentyczny (wyjątek: "Bilet został już wykorzystany").
++ Kasjer ma możliwość oznaczenia biletu jako "wykorzystany". (przypadek: "Możliwość oznaczenia biletu jako “wykorzystany”")
+
+=== Przebiegi alternatywne
+2a: Wyjątek: "Bilet nie istnieje" \
+2a1. System informuje kontrolera biletów, że bilet nie istnieje. \
+2a2. Proces weryfikacji jest przerywany.
+
+3a: Wyjątek: "Bilet został już wykorzystany" \
+3a1. System informuje kontrolera biletów, że bilet został już wykorzystany. \
+3a2. Proces weryfikacji jest przerywany.
+
+== Możliwość oznaczenia biletu jako “wykorzystany”
+
+=== Warunki początkowe
+- Bilet został zweryfikowany jako autentyczny oraz niewykorzystany.
+
+=== Przebieg
++ Kasjer zgłasza żądanie oznaczenia biletu jako "wykorzystany".
++ System oznacza bilet jako "wykorzystany".
+
+=== Przebiegi alternatywne
+- Brak.
+
+=== Warunki końcowe
+- Bilet oznaczony jako "wykorzystany".
+
+#line()
+#text(size: 24pt, fill: maroon)[Planista]
+
+== Przeglądanie repertuaru na poszczególne dni
+=== Warunki początkowe
+- Brak.
+=== Przebieg
++ Planista zgłasza żądanie sprawdzenia repertuaru kina. Posiada możliwość określenia ilości dni (do 30, domyślnie 7).
++ System prezentuje planiście listę filmów, które będą wyświetlane w wybranych dniach. Informacje zawierają:
+  - tytuł filmu,
+  - datę seansu,
+  - godzinę rozpoczęcia.
++ Planista może zmodyfikować repertuar (przypadek: "Modyfikacja repertuaru na poszczególne dni")
+
+=== Przebiegi alternatywne
+- Brak.
+
+=== Warunki końcowe
+- Brak.
+
+== Modyfikacja repertuaru na poszczególne dni
+=== Warunki początkowe
++ System w trybie przeglądania repertuaru kina - widoczna lista filmów.
+
+=== Przebieg
++ Planista widzi repertuar na poszczególne dni.
++ Planista ma możliwość dodania, usunięcia lub modyfikacji seansu. W tym celu musi podać:
+  - tytuł filmu,
+  - salę, w której film będzie wyświetlany,
+  - datę seansu,
+  - godzinę rozpoczęcia.
++ System zapisuje zmiany w bazie danych.
+
+=== Przebiegi alternatywne
+- Brak.
+
+=== Warunki końcowe
+- Seanse zostały dodane, zmodyfikowane lub usunięte z repertuaru.
+
+#line()
+#text(size: 24pt, fill: maroon)[Technik filmowy]
+
+== Sprawdzanie repertuaru
+=== Warunki początkowe
+- Brak.
+
+=== Przebieg
++ Technik filmowy zgłasza żądanie sprawdzenia repertuaru kina. Posiada możliwość określenia ilości dni (do 30, domyślnie 7).
++ System prezentuje technikowi filmowemu listę filmów, które będą wyświetlane w wybranych dniach. Informacje zawierają:
+  - tytuł filmu,
+  - salę, w której film będzie wyświetlany,
+  - datę seansu,
+  - godzinę rozpoczęcia.
+
+=== Przebiegi alternatywne
+- Brak.
+
+=== Warunki końcowe
+- Brak.
+
+== Przeglądanie katalogu lokalizacji przechowywania filmów
+=== Warunki początkowe
+- Brak.
+
+=== Przebieg
++ Technik filmowy zgłasza żądanie przeglądania katalogu lokalizacji przechowywania filmów
++ Technik wybiera z listy filmów pozycję, która go interesuje
++ System wyświetla lokalizacje wybranego filmu
+
+=== Przebiegi alternatywne
+- Brak.
+
+=== Warunki końcowe
+- Brak.
