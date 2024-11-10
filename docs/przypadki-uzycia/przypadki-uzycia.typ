@@ -16,6 +16,7 @@
     v(12pt),
     text(size: 20pt)[Przypadki użycia],
     v(12pt),
-    text(size: 15pt)[Autorzy],
+    text(size: 15pt)[Ada Kołodziejczak 193450, Krzysztof Nasuta 193328, Maciej Raciniewski 189774],
   )
 ]
+
