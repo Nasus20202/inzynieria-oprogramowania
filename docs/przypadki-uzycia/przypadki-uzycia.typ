@@ -58,7 +58,6 @@ Jest systemem współpracującym. Zapewnia informacje o filmach w tym ich opisy,
 = Przypadki użycia
 
 == Założenie konta w serwisie
-
 === Warunki początkowe
 - Klient niezalogowany
 
@@ -114,6 +113,7 @@ Jest systemem współpracującym. Zapewnia informacje o filmach w tym ich opisy,
 
 === Przebiegi alternatywne
 - Brak
+
 === Warunki końcowe
 - Brak
 
@@ -122,25 +122,28 @@ Jest systemem współpracującym. Zapewnia informacje o filmach w tym ich opisy,
 - System w trybie sprawdzania repertuaru kina - widoczna lista filmów.
 
 === Przebieg
-+ Klient zgłasza żądanie wyświetlenia ocen oraz zwiastunów z IMDb.
-+ Pobieranie informacji z serwisu IMDb
-+ System prezentuje klientowi oceny oraz zwiastun.
++ Klient zgłasza żądanie wyświetlenia ocen, opisów oraz zwiastunów z IMDb dla wybranego filmu.
++ System sprawdza dostępność informacji w pamieci podręcznej (wyjątek: "Brak informacji w pamięci podręcznej").
++ System prezentuje klientowi oceny, opisy oraz zwiastun.
 
 === Przebiegi alternatywne
-- Brak.
+2a: Wyjątek: "Brak informacji w pamięci podręcznej" \
+2a1. System pobiera oceny, opisy oraz zwiastuny z IMDb. \
+2a2. System zapisuje informacje w pamięci podręcznej. \
+2a3. System prezentuje klientowi oceny, opisy oraz zwiastun.
 
 === Warunki końcowe
-- Brak.
+- Jeśli wykonano przebieg alternatywny 2a: informacje o filmie zostały zapisane w pamięci podręcznej.
 
 == Sprawdzanie wolnych miejsc w sali online
 === Warunki początkowe
 - System w trybie sprawdzania repertuaru kina - widoczna lista filmów.
 
 === Przebieg
-- Klient zgłasza żądanie wyświetlenia wolnych miejsc na wybrany przez niego seans.
-- System sprawdza, które miejsca zostały już zajęte i wyświetla informację klientowi.
-- Klient ma możliwość rezerwacji biletu (przypadek: "Rezerwacja biletu").
-- Jeżeli klient jest zalogowany, ma możliwość kupna biletu (przypadek: "Zakup biletu")
++ Klient zgłasza żądanie wyświetlenia wolnych miejsc na wybrany przez niego seans.
++ System sprawdza, które miejsca zostały już zajęte i wyświetla informację klientowi.
++ Klient ma możliwość rezerwacji biletu (przypadek: "Rezerwacja biletu").
++ Jeżeli klient jest zalogowany, ma możliwość kupna biletu (przypadek: "Zakup biletu")
 
 === Przebiegi alternatywne
 - Brak.
@@ -153,17 +156,19 @@ Jest systemem współpracującym. Zapewnia informacje o filmach w tym ich opisy,
 - System w trybie sprawdzania wolnych miejsc - widoczna lista miejsc na sali.
 
 === Przebieg
-- Klient zgłasza żądanie rezerwacji miejsca.
-- Klient wybiera dostępne miejsca (wolne) (wyjątek:"Brak dostępnych miejsc")
-- System prosi o imię w celu późniejszego potwierdzenia rezerwacji
-- Klient podaje imię
++ Klient zgłasza żądanie rezerwacji miejsca.
++ Klient wybiera dostępne miejsca.
++ System zapisuje wybrane miejsca jako zarezerwowane. (wyjątek: "Wybrane miejsca nie są dostępne").
++ System prosi o imię w celu późniejszego potwierdzenia rezerwacji.
++ Klient podaje imię.
++ System zapisuje rezerwację w bazie danych.
 
 === Przebiegi alternatywne
-1-4: W każdym z tych kroków klient ma możliwość przerwania rezerwacji.
+1-4: W każdym z tych kroków klient ma możliwość przerwania rezerwacji. Jeśli klient przerwie rezerwację, system zwraca zarezerwowane miejsca do puli wolnych miejsc.
 
-2a. Wyjątek:"Brak dostępnych miejsc".\
-2a1. System informuje o braku miejsc na seans.\
-2a2. Rezerwowanie miejsc jest przerywane.
+3a. Wyjątek: "Wybrane miejsca nie są dostępne".\
+3a1. System informuje o braku dostępności wybranych miejsc.\
+3a2. Rezerwowanie miejsc jest przerywane.
 
 === Warunki końcowe
 - Bilet zarezerwowany na podane imię.
@@ -176,17 +181,22 @@ Jest systemem współpracującym. Zapewnia informacje o filmach w tym ich opisy,
 === Przebieg
 + Klient widzi dostępne miejsca w sali. Może wybrać miejsca, które go interesują.
 + Klient zgłasza żądanie zakupu biletu.
-+ System prosi o potwierdzenie wyboru miejsca oraz przedstawia cenę biletu.
++ System prosi o potwierdzenie wyboru miejsca oraz przedstawia cenę biletu. Zapisuje miejsca jako zarezerwowane. (wyjątek: "Wybrane miejsca nie są dostępne").
 + Klient potwierdza i przechodzi do płatności.
 + System przekierowuje klienta do systemu płatności Przelewy24, gdzie klient dokonuje płatności (przypadek: "Płatność za bilet" oraz wyjątek: "Płatność nie powiodła się").
 + System zapisuje zakupiony bilet w bazie danych.
 
 === Przebiegi alternatywne
-1-4: W każdym z tych kroków klient ma możliwość przerwania zakupu.
+1-4: W każdym z tych kroków klient ma możliwość przerwania zakupu. Jeśli klient przerwie zakup, system zwraca zarezerwowane miejsca do puli wolnych miejsc.
+
+3a. Wyjątek: "Wybrane miejsca nie są dostępne".\
+3a1. System informuje o braku dostępności wybranych miejsc.\
+3a2. Zakup biletu jest przerywany.
 
 5a: Wyjątek: "Płatność nie powiodła się" \
 5a1. System informuje klienta o niepowodzeniu płatności. \
-5a2. Proces zakupu jest przerywany.
+5a2. System zwraca zarezerwowane miejsca do puli wolnych miejsc. \
+5a3. Proces zakupu jest przerywany.
 
 === Warunki końcowe
 - Bilet zakupiony.
@@ -245,8 +255,10 @@ Jest systemem współpracującym. Zapewnia informacje o filmach w tym ich opisy,
 - Klient jest zalogowany.
 
 === Przebieg
-- Klient zgłasza żądanie przeglądania historii zakupów użytkownika.
-- System wyświetla poprzednie zakupy użytkownika.
++ Klient zgłasza żądanie przeglądania historii zakupów użytkownika.
++ System wyświetla poprzednie zakupy użytkownika.
++ Klient może zgłosić żądanie zwrotu biletu (przypadek: "Zwrot biletu")
++ Klient może zgłosić żądanie pobrania zakupionego biletu (przypadek: "Pobranie pliku z zakupionym biletem")
 
 === Przebiegi alternatywne
 - Brak.
@@ -256,19 +268,41 @@ Jest systemem współpracującym. Zapewnia informacje o filmach w tym ich opisy,
 
 == Zwrot biletów
 === Warunki początkowe
+- Klient zalogowany.
+- System w trybie przeglądania historii zakupów użytkownika - widoczna lista zakupionych biletów.
 
 === Przebieg
++ Z listy zakupionych biletów, klient wybiera zakup, który chce anulować.
++ Klient zgłasza żądanie zwrotu biletu.
++ System sprawdza czy dany seans już się odbył (wyjątek: "Seans już się odbył").
++ System prosi o potwierdzenie prośby.
++ Klient potwierdza chęć zwrotu biletu (Wyjątek: "Klient anulował żądanie zwrotu biletu")
++ System wysyła żądanie do systemu Przelewy24 o zwrot środków na konto klienta.
 
 === Przebiegi alternatywne
+3a Wyjątek: "Seans już się odbył" \
+3a1. System informuje, że seans już się odbył\
+3a2. Proces zwrotu biletu jest przerywany.
 
+5a Wyjątek: "Klient anulował żądanie zwrotu biletu"\
+5a1. Proces zwrotu biletu jest przerywany.
 === Warunki końcowe
+- System usuwa wybrany bilet.
 
 == Pobranie pliku z zakupionym biletem
 === Warunki początkowe
+- Klient zalogowany.
+- System w trybie przeglądania historii zakupów użytkownika - widoczna lista zakupionych biletów.
 
 === Przebieg
++ Klient widzi listę zakupionych biletów i wybiera interesujący go bilet.
++ Klient zgłasza żądanie pobranie pliku z danym biletem.
++ System generuje plik z biletem.
++ Klient pobiera plik.
 
 === Przebiegi alternatywne
+- Brak.
 
 === Warunki końcowe
+- Klient pobrał plik z biletem.
 
