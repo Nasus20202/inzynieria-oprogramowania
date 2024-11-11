@@ -272,7 +272,7 @@ Jest systemem współpracującym. Zapewnia informacje o filmach w tym ich opisy,
 === Warunki końcowe
 - Brak.
 
-== Zwrot biletów
+== Zwrot biletu
 === Warunki początkowe
 - Klient zalogowany.
 - System w trybie przeglądania historii zakupów użytkownika - widoczna lista zakupionych biletów.
@@ -387,7 +387,7 @@ Jest systemem współpracującym. Zapewnia informacje o filmach w tym ich opisy,
 2a2. Kasjer ponawia próbę drukowania biletu. (powrót do punktu 2).
 
 === Warunki końcowe
-- Klient otrzymał wydrukowany bilet.
+- Brak.
 
 
 == Eksport historii transakcji do programu księgowego
@@ -437,7 +437,7 @@ Jest systemem współpracującym. Zapewnia informacje o filmach w tym ich opisy,
 + Jeśli nie zeskanowano jeszcze kodu QR, system prosi kontrolera biletów o wprowadzenie kodu ręcznie.
 + System wyszukuje bilet w bazie danych. (wyjątek: "Bilet nie istnieje")
 + System sprawdza, czy bilet jest autentyczny (wyjątek: "Bilet został już wykorzystany").
-+ Kasjer ma możliwość oznaczenia biletu jako "wykorzystany". (przypadek: "Możliwość oznaczenia biletu jako “wykorzystany”")
++ Kontroler ma możliwość oznaczenia biletu jako "wykorzystany". (przypadek: "Oznaczenie biletu jako “wykorzystany”")
 
 === Przebiegi alternatywne
 2a: Wyjątek: "Bilet nie istnieje" \
@@ -448,13 +448,16 @@ Jest systemem współpracującym. Zapewnia informacje o filmach w tym ich opisy,
 3a1. System informuje kontrolera biletów, że bilet został już wykorzystany. \
 3a2. Proces weryfikacji jest przerywany.
 
-== Możliwość oznaczenia biletu jako “wykorzystany”
+=== Warunki końcowe
+- Brak.
+
+== Oznaczenie biletu jako “wykorzystany”
 
 === Warunki początkowe
 - Bilet został zweryfikowany jako autentyczny oraz niewykorzystany.
 
 === Przebieg
-+ Kasjer zgłasza żądanie oznaczenia biletu jako "wykorzystany".
++ Kontroler zgłasza żądanie oznaczenia biletu jako "wykorzystany".
 + System oznacza bilet jako "wykorzystany".
 
 === Przebiegi alternatywne
@@ -473,6 +476,7 @@ Jest systemem współpracującym. Zapewnia informacje o filmach w tym ich opisy,
 + Planista zgłasza żądanie sprawdzenia repertuaru kina. Posiada możliwość określenia ilości dni (do 30, domyślnie 7).
 + System prezentuje planiście listę filmów, które będą wyświetlane w wybranych dniach. Informacje zawierają:
   - tytuł filmu,
+  - salę, w której film będzie wyświetlany,
   - datę seansu,
   - godzinę rozpoczęcia.
 + Planista może zmodyfikować repertuar (przypadek: "Modyfikacja repertuaru na poszczególne dni")
