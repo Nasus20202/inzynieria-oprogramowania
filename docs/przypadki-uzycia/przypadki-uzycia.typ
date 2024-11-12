@@ -239,7 +239,7 @@ Jest systemem współpracującym. Zapewnia informacje o filmach w tym ich opisy,
 + Klient wybiera datę, godzinę oraz salę.
 + System sprawdza dostępność sali w podanym terminie oraz przedstawia informację o kosztach (wyjątek: "Sala zajęta").
 + Klient potwierdza rezerwację.
-+ System przekierowuje klienta do systemu płatności Przelewy24, gdzie klient dokonuje płatności (przypadek: "Płatność za rezerwację sali" oraz wyjątek: "Płatność nie powiodła się").
++ System przekierowuje klienta do systemu płatności Przelewy24, gdzie klient dokonuje płatności (przypadek: "Płatność" oraz wyjątek: "Płatność nie powiodła się").
 + System zapisuje rezerwację w bazie danych.
 
 === Przebiegi alternatywne
