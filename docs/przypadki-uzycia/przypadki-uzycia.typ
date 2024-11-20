@@ -59,6 +59,23 @@ Jest systemem współpracującym. Zapewnia informacje o filmach w tym ich opisy,
 
 = Przypadki użycia
 
+== Logowanie
+=== Warunki początkowe
+- Użytkownik niezalogowany
+
+=== Przebieg
++ Użytkownik zgłasza żądanie logowania.
++ System prosi o uwierzytelnienie.
++ Użytkownik podaje swój e-mail/unikatowy numer identyfikacyjny oraz hasło.
++ System weryfikuje podaną informacje (wyjątek: "Niewłaściwy login lub hasło").
+
+=== Przebiegi alternatywne
+4a: Wyjątek: "Niewłaściwy login lub hasło" \
+4a1. System informuje użytkownika o niepowodzeniu logowania. \
+4a2. Powrót do punktu 3.
+
+=== Warunki końcowe
+- Użytkownik zalogowany
 
 #line()
 #text(size: 24pt, fill: maroon)[Klient]
@@ -85,24 +102,6 @@ Jest systemem współpracującym. Zapewnia informacje o filmach w tym ich opisy,
 
 === Warunki końcowe
 - Nowe konto w serwisie zostało utworzone
-
-== Logowanie
-=== Warunki początkowe
-- Klient niezalogowany
-
-=== Przebieg
-+ Klient zgłasza żądanie logowania.
-+ System prosi o uwierzytelnienie.
-+ Klient podaje swój e-mail/unikatowy numer identyfikacyjny oraz hasło.
-+ System weryfikuje podaną informacje (wyjątek: "Niewłaściwy login lub hasło").
-
-=== Przebiegi alternatywne
-4a: Wyjątek: "Niewłaściwy login lub hasło" \
-4a1. System informuje użytkownika o niepowodzeniu logowania. \
-4a2. Powrót do punktu 3.
-
-=== Warunki końcowe
-- Klient zalogowany
 
 == Sprawdzanie repertuaru kina
 === Warunki początkowe
@@ -181,15 +180,14 @@ Jest systemem współpracującym. Zapewnia informacje o filmach w tym ich opisy,
 
 == Zakup biletu
 === Warunki początkowe
-- Klient zalogowany.
 - System w trybie sprawdzania wolnych miejsc - widoczna lista miejsc na sali.
 
 === Przebieg
 + Klient zgłasza żądanie kupna biletu.
 + Klient wybiera dostępne miejsca.
 + System prosi o potwierdzenie wyboru miejsca oraz przedstawia cenę biletu. Zapisuje miejsca jako zarezerwowane. (wyjątek: "Wybrane miejsca nie są już dostępne").
-+ Klient potwierdza i przechodzi do płatności.
-+ System przekierowuje klienta do systemu płatności Przelewy24, gdzie klient dokonuje płatności (przypadek: "Płatność" oraz wyjątek: "Płatność nie powiodła się").
++ Klient potwierdza zakup wybranych biletów.
++ Klient dokonuje płatności internetowej (przypadek: "Płatność" oraz wyjątek: "Płatność nie powiodła się").
 + System zapisuje zakupiony bilet w bazie danych.
 
 === Przebiegi alternatywne
@@ -209,26 +207,20 @@ Jest systemem współpracującym. Zapewnia informacje o filmach w tym ich opisy,
 
 == Płatność
 === Warunki początkowe
-- Klient zalogowany.
 - Klient wybrał i potwierdził zakup.
 
 === Przebieg
-+ Klient wybiera metodę płatności.
-+ System żąda danych wymaganych przez daną metodę płatności.
-+ Klient podaje dane (wyjątek: "Niepoprawne dane")
-+ System weryfikuje płatność (wyjątek: "Błąd płatności")
++ System przekierowuje klienta do systemu płatności Przelewy24, gdzie klient dokonuje płatności
++ System weryfikuje płatność. (wyjątek: "Błąd płatności")
++ System zapisuje potwierdzenie płatności w bazie danych.
 
 === Przebiegi alternatywne
-3a: Wyjątek: "Niepoprawne dane" \
-3a1. System Przelewy24 informuje klienta o niepoprawnych danych. \
-3a2. Klient ma możliwość ponownego wyboru metody płatności (powrót do punktu 2).
-
-4a: Wyjątek: "Błąd płatności" \
-4a1. System Przelewy24 informuje klienta o niepowodzeniu płatności. \
-4a2. Klient ma możliwość ponownego wyboru metody płatności (powrót do punktu 2).
+2a: Wyjątek: "Błąd płatności" \
+2a1. System Przelewy24 informuje klienta o niepowodzeniu płatności. \
+2a2. Klient ma możliwość ponownej próby płatności (powrót do punktu 1).
 
 === Warunki końcowe
-- System otrzymuje potwierdzenie realizacji płatności od Przelewy24.
+- System otrzymuje i zapisuje potwierdzenie realizacji płatności od Przelewy24.
 
 == Rezerwacja sali na specjalne wydarzenia
 === Warunki początkowe
@@ -239,7 +231,7 @@ Jest systemem współpracującym. Zapewnia informacje o filmach w tym ich opisy,
 + Klient wybiera datę, godzinę oraz salę.
 + System sprawdza dostępność sali w podanym terminie oraz przedstawia informację o kosztach (wyjątek: "Sala zajęta").
 + Klient potwierdza rezerwację.
-+ System przekierowuje klienta do systemu płatności Przelewy24, gdzie klient dokonuje płatności (przypadek: "Płatność" oraz wyjątek: "Płatność nie powiodła się").
++ Klient dokonuje płatności internetowej (przypadek: "Płatność" oraz wyjątek: "Płatność nie powiodła się").
 + System zapisuje rezerwację w bazie danych.
 
 === Przebiegi alternatywne
@@ -262,19 +254,20 @@ Jest systemem współpracującym. Zapewnia informacje o filmach w tym ich opisy,
 
 === Przebieg
 + Klient zgłasza żądanie przeglądania historii zakupów użytkownika.
-+ System wyświetla poprzednie zakupy użytkownika.
++ System wyświetla poprzednie zakupy użytkownika. (wyjatek: "Brak historii zakupów")
 + Klient może zgłosić żądanie zwrotu biletu (przypadek: "Zwrot biletu")
 + Klient może zgłosić żądanie pobrania zakupionego biletu (przypadek: "Pobranie pliku z zakupionym biletem")
 
 === Przebiegi alternatywne
-- Brak.
+2a: Wyjątek: "Brak historii zakupów" \
+2a1. System informuje klienta, że nie ma historii zakupów. \
+2a2. Proces przeglądania historii zakupów kończy się.
 
 === Warunki końcowe
 - Brak.
 
 == Zwrot biletu
 === Warunki początkowe
-- Klient zalogowany.
 - System w trybie przeglądania historii zakupów użytkownika - widoczna lista zakupionych biletów.
 
 === Przebieg
@@ -317,7 +310,7 @@ Jest systemem współpracującym. Zapewnia informacje o filmach w tym ich opisy,
 
 == Dostęp do aktualnego repertuaru kina
 === Warunki początkowe
-- Brak.
+- Zalogowano do systemu kontem z uprawnieniami kasjera.
 
 === Przebieg
 + Kasjer zgłasza żądanie sprawdzenia repertuaru kina. Posiada możliwość określenia ilości dni (do 30, domyślnie 7).
@@ -392,7 +385,7 @@ Jest systemem współpracującym. Zapewnia informacje o filmach w tym ich opisy,
 
 == Eksport historii transakcji do programu księgowego
 === Warunki początkowe
-- Brak.
+- Zalogowano do systemu kontem z uprawnieniami kasjera.
 
 === Przebieg
 + Kasjer zgłasza żądanie eksportu historii transakcji do programu księgowego.
@@ -417,7 +410,7 @@ Jest systemem współpracującym. Zapewnia informacje o filmach w tym ich opisy,
 
 == Sprawdzanie kodów QR na biletach
 === Warunki początkowe
-- Brak.
+- Zalogowano do systemu kontem z uprawnieniami kontrolera biletów
 
 === Przebieg
 + Kasjer zgłasza żądanie sprawdzenia kodu QR na bilecie.
@@ -431,7 +424,7 @@ Jest systemem współpracującym. Zapewnia informacje o filmach w tym ich opisy,
 
 == Weryfikacja autentyczności biletu
 === Warunki początkowe
-- Brak.
+- Zalogowano do systemu kontem z uprawnieniami kontrolera biletów
 
 === Przebieg
 + Jeśli nie zeskanowano jeszcze kodu QR, system prosi kontrolera biletów o wprowadzenie kodu ręcznie.
@@ -471,7 +464,8 @@ Jest systemem współpracującym. Zapewnia informacje o filmach w tym ich opisy,
 
 == Przeglądanie repertuaru na poszczególne dni
 === Warunki początkowe
-- Brak.
+- Zalogowano do systemu kontem z uprawnieniami kontrolera biletów.
+
 === Przebieg
 + Planista zgłasza żądanie sprawdzenia repertuaru kina. Posiada możliwość określenia ilości dni (do 30, domyślnie 7).
 + System prezentuje planiście listę filmów, które będą wyświetlane w wybranych dniach. Informacje zawierają:
@@ -511,7 +505,7 @@ Jest systemem współpracującym. Zapewnia informacje o filmach w tym ich opisy,
 
 == Sprawdzanie repertuaru
 === Warunki początkowe
-- Brak.
+- Zalogowano do systemu kontem z uprawnieniami technika filmowego.
 
 === Przebieg
 + Technik filmowy zgłasza żądanie sprawdzenia repertuaru kina. Posiada możliwość określenia ilości dni (do 30, domyślnie 7).
@@ -525,7 +519,7 @@ Jest systemem współpracującym. Zapewnia informacje o filmach w tym ich opisy,
 - Brak.
 
 === Warunki końcowe
-- Brak.
+- Zalogowano do systemu kontem z uprawnieniami technika filmowego.
 
 == Przeglądanie katalogu lokalizacji przechowywania filmów
 === Warunki początkowe
