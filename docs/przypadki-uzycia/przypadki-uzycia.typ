@@ -254,8 +254,13 @@ Jest systemem współpracującym. Zapewnia informacje o filmach w tym ich opisy,
 
 === Przebieg
 + Klient zgłasza żądanie przeglądania historii zakupów użytkownika.
-+ System wyświetla poprzednie zakupy użytkownika. (wyjatek: "Brak historii zakupów")
-+ Klient może zgłosić żądanie zwrotu biletu (przypadek: "Zwrot biletu")
++ System wyświetla poprzednie zakupy użytkownika. (wyjatek: "Brak historii zakupów") Informacje zawierają:
+  - tytuł filmu,
+  - datę seansu,
+  - godzinę rozpoczęcia,
+  - numer biletu,
+  - cena biletu.
++ Klient może zgłosić żądanie zwrotu biletu (przypadek: "Zwrot biletu").
 + Klient może zgłosić żądanie pobrania zakupionego biletu (przypadek: "Pobranie pliku z zakupionym biletem")
 
 === Przebiegi alternatywne
